@@ -13,10 +13,7 @@ from random import randint
 x = tf.placeholder('float')
 y = tf.placeholder('int32')
 mode=tf.placeholder('bool')
-d=tf.placeholder('float')
-e=tf.placeholder('float')
-f=tf.placeholder('float')
-g=tf.placeholder('float')
+
 
 
 BATCH_SIZE=256
@@ -176,7 +173,10 @@ def main():
 	with tf.Session(config=tf.ConfigProto(allow_soft_placement=True)) as sess:
 		sess.run(tf.global_variables_initializer())
 		with tf.device('/gpu:0'):
-			
+			d=tf.placeholder('float')
+			e=tf.placeholder('float')
+			f=tf.placeholder('float')
+			g=tf.placeholder('float')
 			flip=tf.image.random_flip_left_right(d)	
 			bright=tf.image.random_brightness(e,63)
 			contrast=tf.image.random_contrast(f,0.8,1.2)
@@ -223,7 +223,7 @@ def main():
 	
 		
 		
-		for i in range(50):
+		for i in range(300):
 			tloss1=0
 			for j in range(0,60416, BATCH_SIZE):
 				temp=tempData[j:j+ BATCH_SIZE,:]
